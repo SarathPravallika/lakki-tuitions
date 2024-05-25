@@ -1,11 +1,23 @@
-import "./App.css";
+import logo from "./logo.svg";
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
-function App() {
+function App({ signOut }) {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Welcome to Pravallika Tuitions world
-    </h1>
+    <View className="App">
+      <Card>
+        <Heading level={1}>Welcome to Pravallika tuitions</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

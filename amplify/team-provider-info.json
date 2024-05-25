@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lakkituitions-dev-9e215-authRole",
+      "UnauthRoleArn": "arn:aws:iam::975050244224:role/amplify-lakkituitions-dev-9e215-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::975050244224:role/amplify-lakkituitions-dev-9e215-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lakkituitions-dev-9e215-deployment",
+      "UnauthRoleName": "amplify-lakkituitions-dev-9e215-unauthRole",
+      "StackName": "amplify-lakkituitions-dev-9e215",
+      "StackId": "arn:aws:cloudformation:us-east-1:975050244224:stack/amplify-lakkituitions-dev-9e215/8aad21c0-1a76-11ef-be67-124506f900a1",
+      "AmplifyAppId": "d2mm9c62r200bv"
+    },
+    "categories": {
+      "auth": {
+        "lakkituitions737076bf": {}
+      }
+    }
+  }
+}
