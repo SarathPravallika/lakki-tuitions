@@ -49,7 +49,7 @@ const DayToDayActivities = ({
     <Card className="flex">
       <Heading level={6}>Day to Day activities</Heading>
 
-      <div className="flex justify-between">
+      <div className="flex gap-1 justify-between">
         <SelectField
           placeholder="Select student"
           value={selectedStudentId}

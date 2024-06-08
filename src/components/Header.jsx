@@ -3,7 +3,7 @@ import { Menu, MenuItem, Button, Heading, View } from "@aws-amplify/ui-react";
 
 const Header = ({ isAdmin, signOut, setRoute }) => {
   return (
-    <View className="App flex justify-between">
+    <View className="App flex justify-between items-center h-8">
       <Menu menuAlign="start">
         <MenuItem onClick={() => setRoute("studentsDetails")}>
           Student(s) Details
@@ -17,8 +17,10 @@ const Header = ({ isAdmin, signOut, setRoute }) => {
           </MenuItem>
         )}
       </Menu>
-      <Heading level={3}>Pravallika tuitions</Heading>
-      <Button onClick={signOut}>Sign Out</Button>
+      <Heading level={6}>Pravallika tuitions</Heading>
+      <Button size="small" onClick={signOut}>
+        Sign Out
+      </Button>
     </View>
   );
 };
