@@ -1,23 +1,54 @@
-import { Card, Heading, Flex, Divider } from "@aws-amplify/ui-react";
-import { todayActivitiesData } from "../services/temp";
+import { Card, Heading, Flex, Divider, TextField } from "@aws-amplify/ui-react";
+import useEntries from "../useEntries";
 import TodayStudent from "./TodayStudent";
+import { useState, useEffect } from "react";
 
-const TodayEntries = ({ data = todayActivitiesData }) => {
+const TodayEntries = ({ students }) => {
+  const { entries, updateEntry, buildEntries } = useEntries({ students });
+
+  const [dateValue, setDateValue] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+
+  useEffect(() => {
+    buildEntries({ selectedDate: dateValue });
+  }, [dateValue]);
+
   return (
     <Card>
-      <Heading level={6}>Date: {new Date().toLocaleDateString()}</Heading>
+      <div className="flex justify-between items-center">
+        <Heading level={6}>Entries for</Heading>
+        <TextField
+          name="dateField"
+          value={dateValue}
+          isDisabled
+          type="date"
+          // onChange={(e) => {
+          //   let { value } = e.target;
+          //   setDateValue(value);
+          // }}
+        />
+      </div>
+
       <div className="p-1" />
       <Divider orientation="horizontal" />
       <div className="p-1" />
+
       <Flex direction="column" gap="small">
-        {data.map(({ name, entryTime, exitTime, remarks }) => (
-          <TodayStudent
-            name={name}
-            entryTime={entryTime}
-            exitTime={exitTime}
-            remarks={remarks}
-          />
-        ))}
+        {Object.values(entries).map(
+          ({ studentID, entryID, name, entryTime, exitTime, remarks }) => (
+            <TodayStudent
+              key={`${studentID}${entryTime}`}
+              entryID={entryID}
+              studentID={studentID}
+              name={name}
+              entryTime={entryTime}
+              exitTime={exitTime}
+              remarks={remarks}
+              updateEntry={updateEntry}
+            />
+          )
+        )}
       </Flex>
     </Card>
   );

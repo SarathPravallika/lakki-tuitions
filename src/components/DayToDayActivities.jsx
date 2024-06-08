@@ -4,52 +4,86 @@ import {
   Divider,
   Flex,
   SelectField,
+  TextField,
 } from "@aws-amplify/ui-react";
 import StudentDayActivity from "./StudentDayActivity";
 import { useState, useEffect } from "react";
+import { generateClient } from "aws-amplify/api";
+import { entriesByStudentID as entriesByStudentIDQuery } from "../graphql/queries";
+import { weekday } from "../utils";
+const client = generateClient();
 
-const DayToDayActivities = ({ isAdmin, selectedStudentId, students = [] }) => {
+const DayToDayActivities = ({
+  isAdmin,
+  students,
+  selectedStudentId,
+  setSelectedStudentId,
+}) => {
   const [data, setData] = useState([]);
+  const [dateValue, setDateValue] = useState("");
+
+  async function fetchSpecificStudentEntriesData({ studentID, selectedDate }) {
+    const studentDetails = await client.graphql({
+      query: entriesByStudentIDQuery,
+      variables: {
+        studentID,
+        filter: { createdAt: { contains: selectedDate } },
+      },
+    });
+    const details = studentDetails.data.entriesByStudentID.items;
+
+    setData(details);
+  }
 
   useEffect(() => {
-    setData([
-      {
-        date: "1-Jan-2024",
-        day: "Monday",
-        entryTime: "4:00:05",
-        exitTime: "5:10:00",
-        remarks: "Taught 6 table",
-      },
-      {
-        date: "2-Jan-2024",
-        day: "Tuesday",
-        entryTime: "4:00:05",
-        exitTime: "5:10:00",
-        remarks: "Taught 7 table",
-      },
-    ]);
-  }, [selectedStudentId]);
+    if (selectedStudentId) {
+      setData([]);
+      fetchSpecificStudentEntriesData({
+        studentID: selectedStudentId,
+        selectedDate: dateValue,
+      });
+    }
+  }, [selectedStudentId, dateValue]);
 
   return (
     <Card className="flex">
       <Heading level={6}>Day to Day activities</Heading>
-      {isAdmin ? (
-        <SelectField placeholder="Select student">
+
+      <div className="flex justify-between">
+        <SelectField
+          placeholder="Select student"
+          value={selectedStudentId}
+          onChange={(e) => setSelectedStudentId(e.target.value)}
+        >
           {students.map(({ id, name }) => (
-            <option value={id}>{name}</option>
+            <option value={id} key={id}>
+              {name}
+            </option>
           ))}
         </SelectField>
-      ) : null}
+        <TextField
+          name="dateField"
+          value={dateValue}
+          type="date"
+          onChange={(e) => {
+            let { value } = e.target;
+            setDateValue(value);
+          }}
+        />
+      </div>
+
       <div className="p-1" />
       <Divider orientation="horizontal" />
       <div className="p-1" />
+
       <Flex direction="column" gap="small">
-        {data.map(({ date, day, entryTime, exitTime, remarks }) => (
+        {data.map(({ id, createdAt, entryTime, exitTime, remarks }, index) => (
           <StudentDayActivity
-            date={date}
-            day={day}
-            entryTime={entryTime}
-            exitTime={exitTime}
+            key={index}
+            date={createdAt.split("T")[0]}
+            day={weekday[new Date(createdAt).getDay()]}
+            entryTime={entryTime.split("T")[1].split(".")[0]}
+            exitTime={exitTime.split("T")[1].split(".")[0]}
             remarks={remarks}
           />
         ))}

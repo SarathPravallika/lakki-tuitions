@@ -13,7 +13,7 @@ const Header = ({ isAdmin, signOut, setRoute }) => {
         </MenuItem>
         {isAdmin && (
           <MenuItem onClick={() => setRoute("todayEntries")}>
-            Today entries
+            Fill daily entries
           </MenuItem>
         )}
       </Menu>

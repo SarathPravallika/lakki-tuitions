@@ -1,4 +1,4 @@
-import { Card, View, Flex, Text } from "@aws-amplify/ui-react";
+import { Card, Flex, Text } from "@aws-amplify/ui-react";
 
 const StudentDayActivity = ({ date, day, entryTime, exitTime, remarks }) => {
   return (
@@ -6,18 +6,27 @@ const StudentDayActivity = ({ date, day, entryTime, exitTime, remarks }) => {
       <Flex direction="column" gap="small">
         <div>
           <Text>
-            Date: &nbsp;
-            {date} {day}
+            <b>Date: &nbsp;</b>
+            {date} ({day})
           </Text>
         </div>
         <div>
-          <Text>Entry time: &nbsp;{entryTime}</Text>
+          <Text>
+            <b>Entry time: &nbsp;</b>
+            {entryTime}
+          </Text>
         </div>
         <div>
-          <Text>Exit time: &nbsp;{exitTime}</Text>
+          <Text>
+            <b>Exit time: &nbsp;</b>
+            {exitTime}
+          </Text>
         </div>
         <div>
-          <Text>Remarks: &nbsp;{remarks}</Text>
+          <Text>
+            <b>Remarks: &nbsp;</b>
+            {remarks}
+          </Text>
         </div>
       </Flex>
     </Card>

@@ -1,0 +1,23 @@
+type Student @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  parentEmail: String!
+  name: String!
+  email: String!
+  mobileNumber: String!
+  flatNumber: String!
+  age: String!
+  class: String!
+  school: String!
+  batch: String!
+  subjects: String!
+  days: String!
+  entries: [Entry] @hasMany(indexName: "byStudent", fields: ["id"])
+}
+
+type Entry @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  studentID: ID! @index(name: "byStudent")
+  entryTime: String
+  exitTime: String
+  remarks: String
+}

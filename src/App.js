@@ -5,27 +5,49 @@ import TodayEntries from "./components/TodayEntries";
 import Header from "./components/Header";
 import StudentsDetails from "./components/StudentsDetails";
 import DayToDayActivities from "./components/DayToDayActivities";
+import useData from "./useData";
 
 function App(props) {
   const {
     signOut,
     user: {
-      signInDetails: { loginId },
+      signInDetails: { loginId: loginEmail },
     },
   } = props;
-  const isAdmin = loginId === "lakki2922@gmail.com";
-  const [route, setRoute] = useState(
-    isAdmin ? "todayEntries" : "dayToDayActivities"
-  );
+  const isAdmin = loginEmail === "lakki2922@gmail.com";
+  const [route, setRoute] = useState("studentsDetails");
+
+  const {
+    students,
+    selectedStudentId,
+    setSelectedStudentId,
+    getAllStudentsData,
+  } = useData({ isAdmin });
 
   const renderRouting = () => {
     switch (route) {
       case "studentsDetails":
-        return <StudentsDetails isAdmin={isAdmin} />;
+        return (
+          <StudentsDetails
+            isAdmin={isAdmin}
+            loginEmail={loginEmail}
+            students={students}
+            selectedStudentId={selectedStudentId}
+            setSelectedStudentId={setSelectedStudentId}
+            getAllStudentsData={getAllStudentsData}
+          />
+        );
       case "dayToDayActivities":
-        return <DayToDayActivities isAdmin={isAdmin} />;
+        return (
+          <DayToDayActivities
+            isAdmin={isAdmin}
+            students={students}
+            selectedStudentId={selectedStudentId}
+            setSelectedStudentId={setSelectedStudentId}
+          />
+        );
       case "todayEntries":
-        return <TodayEntries />;
+        return <TodayEntries students={students} />;
       default:
         return null;
     }

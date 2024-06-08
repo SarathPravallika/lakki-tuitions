@@ -7,6 +7,7 @@ import {
   Button,
   Icon,
 } from "@aws-amplify/ui-react";
+import { useState } from "react";
 
 import {} from "@aws-amplify/ui-react";
 
@@ -19,7 +20,22 @@ const IconSave = () => {
   );
 };
 
-const TodayStudent = ({ name, entryTime, exitTime, remarks }) => {
+const TodayStudent = ({
+  entryID,
+  studentID,
+  name,
+  entryTime,
+  exitTime,
+  remarks,
+  updateEntry,
+}) => {
+  const [data, setData] = useState({
+    name,
+    entryTime,
+    exitTime,
+    remarks,
+  });
+
   return (
     <Card variation="elevated" width="100%">
       <Flex direction="column" gap="small">
@@ -34,9 +50,22 @@ const TodayStudent = ({ name, entryTime, exitTime, remarks }) => {
           <CheckboxField
             name="entryTime"
             value="yes"
-            checked={!!entryTime}
-            isDisabled={!!entryTime}
-            onChange={() => {}}
+            checked={!!data.entryTime}
+            isDisabled={!!data.entryTime}
+            onChange={() => {
+              const newEntryTime = new Date().toISOString();
+              setData({
+                ...data,
+                entryTime: newEntryTime,
+              });
+              updateEntry({
+                entryID,
+                studentID,
+                entryTime: newEntryTime,
+                exitTime: data.exitTime,
+                remarks: data.remarks,
+              });
+            }}
           />
         </Flex>
         <Flex direction="row">
@@ -44,9 +73,23 @@ const TodayStudent = ({ name, entryTime, exitTime, remarks }) => {
           <CheckboxField
             name="exitTime"
             value="yes"
-            checked={!!exitTime}
-            isDisabled={!!exitTime}
-            onChange={() => {}}
+            checked={!!data.exitTime}
+            isDisabled={!!data.exitTime || !data.entryTime}
+            onChange={() => {
+              const newExitTime = new Date().toISOString();
+
+              setData({
+                ...data,
+                exitTime: newExitTime,
+              });
+              updateEntry({
+                entryID,
+                studentID,
+                entryTime: data.entryTime,
+                exitTime: newExitTime,
+                remarks: data.remarks,
+              });
+            }}
           />
         </Flex>
         <Flex direction="column">
@@ -56,8 +99,26 @@ const TodayStudent = ({ name, entryTime, exitTime, remarks }) => {
               name="remarks"
               type="remarks"
               placeholder="Enter remarks for today's class"
+              value={data.remarks}
+              onChange={(e) => {
+                setData({
+                  ...data,
+                  remarks: e.target.value,
+                });
+              }}
             />
-            <Button size="small">
+            <Button
+              size="small"
+              onClick={() => {
+                updateEntry({
+                  entryID,
+                  studentID,
+                  entryTime: data.entryTime,
+                  exitTime: data.exitTime,
+                  remarks: data.remarks,
+                });
+              }}
+            >
               <IconSave />
             </Button>
           </Flex>

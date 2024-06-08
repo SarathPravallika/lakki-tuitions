@@ -15,3 +15,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.amplify-checkbox__icon--disabled {
+  background-color: rgb(4, 125, 149) !important;
+}
