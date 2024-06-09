@@ -9,14 +9,23 @@
       "UnauthRoleName": "amplify-lakkituitions-dev-9e215-unauthRole",
       "StackName": "amplify-lakkituitions-dev-9e215",
       "StackId": "arn:aws:cloudformation:us-east-1:975050244224:stack/amplify-lakkituitions-dev-9e215/8aad21c0-1a76-11ef-be67-124506f900a1",
-      "AmplifyAppId": "d2mm9c62r200bv"
+      "AmplifyAppId": "d2mm9c62r200bv",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-lakkituitions-dev-9e215-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "lakkituitions737076bf": {}
       },
       "api": {
-        "lakkituitions": {}
+        "lakkituitions": {},
+        "tuitionsAPI": {}
+      },
+      "function": {
+        "tuitionsSMS": {
+          "snsTopicArn": "arn:aws:sns:us-east-1:975050244224:lakkisms",
+          "deploymentBucketName": "amplify-lakkituitions-dev-9e215-deployment",
+          "s3Key": "amplify-builds/tuitionsSMS-666e35716d2f4b7a3851-build.zip"
+        }
       }
     }
   }

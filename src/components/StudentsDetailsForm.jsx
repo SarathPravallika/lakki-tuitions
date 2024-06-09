@@ -7,6 +7,7 @@ import {
   Input,
   SelectField,
   View,
+  CheckboxField,
 } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { createStudent as createStudentMutation } from "../graphql/mutations";
@@ -43,6 +44,7 @@ const StudentsDetailsForm = ({
       batch: data.batch,
       subjects: data.subjects,
       days: data.days,
+      hasOptedSMS: data.hasOptedSMS,
     };
 
     // create student
@@ -87,7 +89,7 @@ const StudentsDetailsForm = ({
                   });
                 }}
               />
-              <Label htmlFor="name">
+              <Label htmlFor="email">
                 Email
                 <Text as="span" fontSize="small" color="font.error">
                   {" "}
@@ -109,7 +111,7 @@ const StudentsDetailsForm = ({
                   });
                 }}
               />
-              <Label htmlFor="name">
+              <Label htmlFor="mobileNumber">
                 Mobile Number
                 <Text as="span" fontSize="small" color="font.error">
                   {" "}
@@ -131,10 +133,29 @@ const StudentsDetailsForm = ({
                   });
                 }}
               />
-            </Flex>
 
-            <Flex direction="column" gap="small">
-              <Label htmlFor="name">
+              <Label htmlFor="hasOptedSMS">
+                Opt for SMS notifications
+                <Text as="span" fontSize="small" color="font.error">
+                  {" "}
+                  (required)
+                </Text>
+              </Label>
+              <CheckboxField
+                name="hasOptedSMS"
+                value="yes"
+                checked={data.hasOptedSMS}
+                isDisabled={disabled}
+                onChange={(e) => {
+                  console.log(e.target.checked);
+                  setData({
+                    ...data,
+                    hasOptedSMS: e.target.checked,
+                  });
+                }}
+              />
+
+              <Label htmlFor="flatNumber">
                 Flat number
                 <Text as="span" fontSize="small" color="font.error">
                   {" "}
@@ -161,7 +182,7 @@ const StudentsDetailsForm = ({
 
           <Card variation="elevated">
             <Flex direction="column" gap="small">
-              <Label htmlFor="name">
+              <Label htmlFor="age">
                 Student Age
                 <Text as="span" fontSize="small" color="font.error">
                   {" "}
@@ -205,7 +226,7 @@ const StudentsDetailsForm = ({
                 <option value="6">Class 6</option>
                 <option value="7">Class 7</option>
               </SelectField>
-              <Label htmlFor="name">
+              <Label htmlFor="school">
                 Student School
                 <Text as="span" fontSize="small" color="font.error">
                   {" "}

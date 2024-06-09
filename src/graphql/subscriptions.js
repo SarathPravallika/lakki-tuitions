@@ -9,6 +9,7 @@ export const onCreateStudent = /* GraphQL */ `
       name
       email
       mobileNumber
+      hasOptedSMS
       flatNumber
       age
       class
@@ -44,6 +45,7 @@ export const onUpdateStudent = /* GraphQL */ `
       name
       email
       mobileNumber
+      hasOptedSMS
       flatNumber
       age
       class
@@ -79,6 +81,7 @@ export const onDeleteStudent = /* GraphQL */ `
       name
       email
       mobileNumber
+      hasOptedSMS
       flatNumber
       age
       class

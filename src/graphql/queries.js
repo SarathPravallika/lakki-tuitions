@@ -9,6 +9,7 @@ export const getStudent = /* GraphQL */ `
       name
       email
       mobileNumber
+      hasOptedSMS
       flatNumber
       age
       class
@@ -49,6 +50,7 @@ export const listStudents = /* GraphQL */ `
         name
         email
         mobileNumber
+        hasOptedSMS
         flatNumber
         age
         class

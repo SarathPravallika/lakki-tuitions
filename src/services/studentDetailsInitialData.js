@@ -11,4 +11,5 @@ export const initialStudentData = {
   batch: "",
   subjects: "",
   days: "",
+  hasOptedSMS: false,
 };

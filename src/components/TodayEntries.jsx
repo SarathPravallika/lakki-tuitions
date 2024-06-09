@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Card, Heading, Flex, Divider, TextField } from "@aws-amplify/ui-react";
 import useEntries from "../useEntries";
 import TodayStudent from "./TodayStudent";
@@ -6,9 +7,7 @@ import { useState, useEffect } from "react";
 const TodayEntries = ({ students }) => {
   const { entries, updateEntry, buildEntries } = useEntries({ students });
 
-  const [dateValue, setDateValue] = useState(
-    new Date().toISOString().split("T")[0]
-  );
+  const [dateValue] = useState(new Date().toISOString().split("T")[0]);
 
   useEffect(() => {
     buildEntries({ selectedDate: dateValue });
@@ -18,16 +17,7 @@ const TodayEntries = ({ students }) => {
     <Card>
       <div className="flex justify-between items-center">
         <Heading level={6}>Entries for</Heading>
-        <TextField
-          name="dateField"
-          value={dateValue}
-          isDisabled
-          type="date"
-          // onChange={(e) => {
-          //   let { value } = e.target;
-          //   setDateValue(value);
-          // }}
-        />
+        <TextField name="dateField" value={dateValue} isDisabled type="date" />
       </div>
 
       <div className="p-1" />

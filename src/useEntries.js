@@ -5,6 +5,7 @@ import {
 } from "./graphql/mutations";
 import { listEntries as listEntriesQuery } from "./graphql/queries";
 import { useState } from "react";
+import sendSMSMessage from "./services/smsMessages";
 const client = generateClient();
 
 const useEntries = ({ students }) => {
@@ -61,6 +62,7 @@ const useEntries = ({ students }) => {
     entryTime,
     exitTime,
     remarks,
+    message,
   }) => {
     const result = await client.graphql({
       query: entryID ? updateEntryMutation : createEntryMutation,
@@ -104,6 +106,16 @@ const useEntries = ({ students }) => {
         ...entries,
         [studentID]: insertedStudentEntry,
       });
+    }
+
+    const { name, hasOptedSMS, mobileNumber } =
+      students.find(({ id }) => id === studentID) || {};
+
+    if (hasOptedSMS) {
+      sendSMSMessage(
+        `+91${mobileNumber}`,
+        `Respected Parent, your child ${name} has ${message}`
+      );
     }
   };
 

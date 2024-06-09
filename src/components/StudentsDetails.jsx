@@ -34,6 +34,7 @@ const StudentsDetails = ({
       subjects,
       days,
       id: id1,
+      hasOptedSMS = false,
     } = details;
 
     setDetails({
@@ -48,6 +49,7 @@ const StudentsDetails = ({
       subjects,
       days,
       id: id1,
+      hasOptedSMS,
     });
   }
 

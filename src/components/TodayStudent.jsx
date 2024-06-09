@@ -64,6 +64,9 @@ const TodayStudent = ({
                 entryTime: newEntryTime,
                 exitTime: data.exitTime,
                 remarks: data.remarks,
+                message: `entered the tuition at ${
+                  newEntryTime.split("T")[1].split(".")[0]
+                }`,
               });
             }}
           />
@@ -88,6 +91,9 @@ const TodayStudent = ({
                 entryTime: data.entryTime,
                 exitTime: newExitTime,
                 remarks: data.remarks,
+                message: `left the tuition at ${
+                  newExitTime.split("T")[1].split(".")[0]
+                }`,
               });
             }}
           />
@@ -116,6 +122,7 @@ const TodayStudent = ({
                   entryTime: data.entryTime,
                   exitTime: data.exitTime,
                   remarks: data.remarks,
+                  message: data.remarks,
                 });
               }}
             >

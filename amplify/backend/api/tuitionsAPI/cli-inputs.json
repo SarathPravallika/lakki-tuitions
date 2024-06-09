@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "paths": {
+    "/tuitions": {
+      "name": "/tuitions",
+      "lambdaFunction": "tuitionsSMS",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "update"
+        ]
+      }
+    }
+  }
+}
