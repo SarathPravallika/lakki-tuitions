@@ -31,7 +31,7 @@
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
     },
-    "tuitionsAPI": {
+    "tuitionsWA": {
       "dependsOn": [
         {
           "attributes": [
@@ -39,7 +39,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "tuitionsSMS"
+          "resourceName": "tuitionsWhatsapp"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -75,34 +75,27 @@
     }
   },
   "function": {
-    "tuitionsSMS": {
+    "tuitionsWhatsapp": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
+  "hosting": {},
   "parameters": {
-    "AMPLIFY_function_tuitionsSMS_deploymentBucketName": {
+    "AMPLIFY_function_tuitionsWhatsapp_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "tuitionsSMS"
+          "resourceName": "tuitionsWhatsapp"
         }
       ]
     },
-    "AMPLIFY_function_tuitionsSMS_s3Key": {
+    "AMPLIFY_function_tuitionsWhatsapp_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "tuitionsSMS"
-        }
-      ]
-    },
-    "AMPLIFY_function_tuitionsSMS_snsTopicArn": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "tuitionsSMS"
+          "resourceName": "tuitionsWhatsapp"
         }
       ]
     }

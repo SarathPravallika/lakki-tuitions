@@ -18,13 +18,12 @@
       },
       "api": {
         "lakkituitions": {},
-        "tuitionsAPI": {}
+        "tuitionsWA": {}
       },
       "function": {
-        "tuitionsSMS": {
-          "snsTopicArn": "arn:aws:sns:us-east-1:975050244224:lakkisms",
+        "tuitionsWhatsapp": {
           "deploymentBucketName": "amplify-lakkituitions-dev-9e215-deployment",
-          "s3Key": "amplify-builds/tuitionsSMS-666e35716d2f4b7a3851-build.zip"
+          "s3Key": "amplify-builds/tuitionsWhatsapp-52755674495a54325a4c-build.zip"
         }
       }
     }

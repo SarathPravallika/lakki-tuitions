@@ -5,7 +5,8 @@ import {
 } from "./graphql/mutations";
 import { listEntries as listEntriesQuery } from "./graphql/queries";
 import { useState } from "react";
-import sendSMSMessage from "./services/smsMessages";
+import sendWAMessage from "./services/whatsappMessages";
+
 const client = generateClient();
 
 const useEntries = ({ students }) => {
@@ -112,9 +113,9 @@ const useEntries = ({ students }) => {
       students.find(({ id }) => id === studentID) || {};
 
     if (hasOptedSMS) {
-      sendSMSMessage(
+      sendWAMessage(
         `+91${mobileNumber}`,
-        `Respected Parent, your child ${name} has ${message}`
+        `Dear parent, your child ${name} has ${message}`
       );
     }
   };

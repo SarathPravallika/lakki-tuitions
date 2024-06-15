@@ -125,6 +125,7 @@ const StudentsDetailsForm = ({
                 type="text"
                 isRequired={true}
                 isDisabled={disabled}
+                maxLength={10}
                 onChange={(e) => {
                   let { value } = e.target;
                   setData({
@@ -135,7 +136,7 @@ const StudentsDetailsForm = ({
               />
 
               <Label htmlFor="hasOptedSMS">
-                Opt for SMS notifications
+                Opt for Whatsapp notifications
                 <Text as="span" fontSize="small" color="font.error">
                   {" "}
                   (required)

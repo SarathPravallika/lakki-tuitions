@@ -53,7 +53,7 @@ const TodayStudent = ({
             checked={!!data.entryTime}
             isDisabled={!!data.entryTime}
             onChange={() => {
-              const newEntryTime = new Date().toISOString();
+              const newEntryTime = new Date().toLocaleString();
               setData({
                 ...data,
                 entryTime: newEntryTime,
@@ -64,9 +64,9 @@ const TodayStudent = ({
                 entryTime: newEntryTime,
                 exitTime: data.exitTime,
                 remarks: data.remarks,
-                message: `entered the tuition at ${
-                  newEntryTime.split("T")[1].split(".")[0]
-                }`,
+                message: `entered the tuition at _${
+                  newEntryTime.split(" ")[1]
+                }_`,
               });
             }}
           />
@@ -79,7 +79,7 @@ const TodayStudent = ({
             checked={!!data.exitTime}
             isDisabled={!!data.exitTime || !data.entryTime}
             onChange={() => {
-              const newExitTime = new Date().toISOString();
+              const newExitTime = new Date().toLocaleString();
 
               setData({
                 ...data,
@@ -91,9 +91,7 @@ const TodayStudent = ({
                 entryTime: data.entryTime,
                 exitTime: newExitTime,
                 remarks: data.remarks,
-                message: `left the tuition at ${
-                  newExitTime.split("T")[1].split(".")[0]
-                }`,
+                message: `left the tuition at _${newExitTime.split(" ")[1]}_`,
               });
             }}
           />
@@ -122,7 +120,7 @@ const TodayStudent = ({
                   entryTime: data.entryTime,
                   exitTime: data.exitTime,
                   remarks: data.remarks,
-                  message: data.remarks,
+                  message: `*${data.remarks}*`,
                 });
               }}
             >

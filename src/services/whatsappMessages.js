@@ -1,11 +1,11 @@
 import { put } from "aws-amplify/api";
 
-const sendSMSMessage = async (mobileNumber, message) => {
+const sendWAMessage = async (mobileNumber, message) => {
   const putOperation = put({
-    apiName: "tuitionsAPI",
-    path: "/tuitions",
+    apiName: "tuitionsWA",
+    path: "/tuitionsWA",
     options: {
-      body: { mobileNumber, textMessage: message },
+      body: { to: `whatsapp:${mobileNumber}`, body: message },
     },
   });
 
@@ -15,4 +15,4 @@ const sendSMSMessage = async (mobileNumber, message) => {
   console.log(response);
 };
 
-export default sendSMSMessage;
+export default sendWAMessage;

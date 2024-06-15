@@ -15,9 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "snsTopicArn": {
-      "Type": "String"
     }
   },
   "Conditions": {
@@ -50,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "tuitionsSMS",
+            "tuitionsWhatsapp",
             {
               "Fn::Join": [
                 "",
                 [
-                  "tuitionsSMS",
+                  "tuitionsWhatsapp",
                   "-",
                   {
                     "Ref": "env"
@@ -72,9 +69,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "SNS_TOPIC_ARN": {
-              "Ref": "snsTopicArn"
             }
           }
         },
@@ -84,7 +78,7 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs16.x",
+        "Runtime": "nodejs18.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -95,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lakkituitionsLambdaRolea95d2917",
+            "lakkituitionsLambdaRolee91ec0a8",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lakkituitionsLambdaRolea95d2917",
+                  "lakkituitionsLambdaRolee91ec0a8",
                   "-",
                   {
                     "Ref": "env"
@@ -170,32 +164,6 @@
           ]
         }
       }
-    },
-    "CustomLambdaExecutionPolicy": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "custom-lambda-execution-policy",
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Action": [
-                "sns:Publish"
-              ],
-              "Resource": [
-                "arn:aws:sns:us-east-1:975050244224:lakkisms"
-              ],
-              "Effect": "Allow"
-            }
-          ]
-        },
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ]
-      },
-      "DependsOn": "LambdaExecutionRole"
     }
   },
   "Outputs": {

@@ -13,6 +13,9 @@
     },
     "tuitionsAPI": {
       "Type": "String"
+    },
+    "tuitionsWA": {
+      "Type": "String"
     }
   },
   "Conditions": {
