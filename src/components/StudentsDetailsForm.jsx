@@ -60,7 +60,7 @@ const StudentsDetailsForm = ({
     if (data.hasOptedSMS) {
       sendWAMessage(
         `+91${data.mobileNumber}`,
-        `Dear Parent, Thank you for registering your child ${data.name} for Pravallika tuitions. Learning is always in fashion.`
+        `Dear Parent, Thank you for registering your child *${data.name}* for Pravallika tuitions. Learning is always in fashion.`
       );
     }
     event.target.reset();
