@@ -22,7 +22,7 @@ function App(props) {
     selectedStudentId,
     setSelectedStudentId,
     getAllStudentsData,
-  } = useData({ isAdmin });
+  } = useData({ isAdmin, loginEmail });
 
   const renderRouting = () => {
     switch (route) {
