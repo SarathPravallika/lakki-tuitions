@@ -13,6 +13,8 @@ import { generateClient } from "aws-amplify/api";
 import { createStudent as createStudentMutation } from "../graphql/mutations";
 import { useEffect, useState } from "react";
 import { initialStudentData } from "../services/studentDetailsInitialData";
+import sendWAMessage from "../services/whatsappMessages";
+
 const client = generateClient();
 
 const StudentsDetailsForm = ({
@@ -55,8 +57,14 @@ const StudentsDetailsForm = ({
       },
     });
     const newStudent = createStudentResult.data.createStudent;
-
+    if (data.hasOptedSMS) {
+      sendWAMessage(
+        `+91${data.mobileNumber}`,
+        `Dear Parent, Thank you for registering your child ${data.name} for Pravallika tuitions. Learning is always in fashion.`
+      );
+    }
     event.target.reset();
+
     getAllStudentsData();
     setSelectedStudentId(newStudent.id);
   };

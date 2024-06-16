@@ -115,7 +115,7 @@ const useEntries = ({ students }) => {
     if (hasOptedSMS) {
       sendWAMessage(
         `+91${mobileNumber}`,
-        `Dear parent, your child ${name} has ${message}`
+        `Dear Parent, Your child ${name} has ${message}`
       );
     }
   };
