@@ -148,7 +148,6 @@ const StudentsDetailsForm = ({
                 checked={data.hasOptedSMS}
                 isDisabled={disabled}
                 onChange={(e) => {
-                  console.log(e.target.checked);
                   setData({
                     ...data,
                     hasOptedSMS: e.target.checked,
@@ -219,6 +218,8 @@ const StudentsDetailsForm = ({
                   });
                 }}
               >
+                <option value="P1">Class PP1</option>
+                <option value="P2">Class PP2</option>
                 <option value="1">Class 1</option>
                 <option value="2">Class 2</option>
                 <option value="3">Class 3</option>

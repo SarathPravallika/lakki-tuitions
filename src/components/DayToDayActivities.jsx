@@ -82,8 +82,8 @@ const DayToDayActivities = ({
             key={index}
             date={createdAt.split("T")[0]}
             day={weekday[new Date(createdAt).getDay()]}
-            entryTime={entryTime.split("T")[1].split(".")[0]}
-            exitTime={exitTime.split("T")[1].split(".")[0]}
+            entryTime={entryTime.split(" ")[1]}
+            exitTime={exitTime.split(" ")[1]}
             remarks={remarks}
           />
         ))}
