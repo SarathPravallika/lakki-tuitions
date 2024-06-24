@@ -22,7 +22,9 @@
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2025-06-24T11:27:28.642Z",
+              "apiKeyExpirationDays": 365,
+              "description": "lakkituitions"
             },
             "authenticationType": "API_KEY"
           }
